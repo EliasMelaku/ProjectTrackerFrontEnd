@@ -1,39 +1,50 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginContext } from "../LoginContext";
 import "./nav.css";
 
 const Nav = () => {
-
   let loginStatus;
+  const [LoginStatus, setLoginStatus] = useContext(LoginContext);
+  var userLoggedIn = LoginStatus;
 
-  if(!localStorage.getItem('username')){
+  let navigate = useNavigate();
+
+  const Logout = () => {
+    localStorage.clear();
+    setLoginStatus(false);
+    navigate("/login", { replace: true });
+  };
+
+  if (!userLoggedIn) {
     loginStatus = (
-      <ul>
-        <Link to="/">
-          <li>Homepage</li>
+      <ul className="loginStatus">
+        <Link to="/login" className="link">
+          <li>Login</li>
         </Link>
-        <Link to="/details">
-          <li>Details</li>
-        </Link>
-        <Link to="/editProfile">
-          <li>EditProfile</li>
+        <Link to="/register" className="link">
+          <li>Sign Up</li>
         </Link>
       </ul>
-    )
-  }
-  else{
+    );
+  } else {
     loginStatus = (
-      <Link to="/login">
-        <h5>Logout</h5>
-      </Link>
-    )
+      <div className="loginStatus">
+        <Link to="/editProfile" className="link">
+          <li>{localStorage.getItem('username')}</li>
+        </Link>
+        <button onClick={Logout}>
+          <h5>Logout</h5>
+        </button>
+      </div>
+    );
   }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
-        Navbar
-      </a>
+      <Link to={"/"}>
+        <h3 className="navbar-brand">ProjectTracker</h3>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -96,8 +107,6 @@ const Nav = () => {
         </ul>
 
         {loginStatus}
-
-        
       </div>
     </nav>
   );

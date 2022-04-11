@@ -8,13 +8,25 @@ ul{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     /* background: rgb(97, 95, 95); */
-    height: 10vh;
+    height: 6vh;
+}
+
+.loginStatus{
+    margin-right: 5rem;
 }
 
 li{
     color: black;
     list-style: none;
     transition: all .5s;
+}
+
+.link{
+    margin: 1rem 1rem 0;
+}
+
+.link:hover{
+    text-decoration: none;
 }

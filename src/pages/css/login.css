@@ -1,41 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Poppins:wght@300&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
     border: none;
+    box-sizing: border-box;
 }
 
+.title{
+    margin: 1rem 0 0 0;
+    font-family: 'Montserrat';
+}
+
+.formContainer{
+    position: absolute;
+    width: 100%;
+    height: 90vh;
+    background-color: rgb(244, 243, 243);
+    padding-top: -5rem;
+    text-align: center;
+}
+
+
+
+
 .loginForm{
+    margin-top: -5rem;
     display: grid;
     justify-content: center;
     align-items: center;
-    border-radius: 2rem;
-    box-shadow: 0 0 8px 2px rgb(91, 88, 88);
+    border-radius: 0.6rem;
+    /* box-shadow: 0 0 8px 2px rgb(91, 88, 88); */
     min-height: 70vh;
-    width: 30%;
+    width: 25%;
     margin: 5rem auto;
+    background: white;
 }
 
+.link{
+    text-decoration: none;
+}
+
+
+
 input{
-    padding: 1rem;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 0 5px 1px grey;
+    padding: 0.75rem 1rem;
+    border-radius: 0.3rem;
+    border: solid 1px rgb(178, 177, 177);
     transition: all 0.5s;
 }
 
+#user{
+    margin-top: 1rem;
+}
+
 input:focus{
-    background-color: black;
-    color: white;
+    /* background-color: #777; */
+    /* color: white; */
+    outline: none;
+    box-shadow: none;
 }
 
 input[type=submit] {
-    background-color: rgb(31, 26, 26);
-    color: whitesmoke;
+    border: none;
+    box-shadow: none;
+    background-image: linear-gradient(to left, #4facfe 0%, #00f2fe 100%);
+    font-size: 1.2rem ;
+    color: white;
 }
 
 input[type=submit]:hover {
-    background-color: whitesmoke;
-    color: rgb(31, 26, 26);
+    background-image: linear-gradient(to left, #71bcfe 0%, #00f2fe 100%);
+    
 }
 
 
@@ -46,3 +83,53 @@ button{
     width: 10rem;
     border-radius: 0.5rem;
 }
+
+.register{
+    position: relative;
+    top: -3rem;
+    width: 30%;
+    padding: 0 3.5rem 1rem;
+    height: 80vh;
+}
+.namesContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.names{
+    display: inline-block;
+    width: 48%;
+}
+
+.names input{
+    width: 100%;
+}
+
+.error{
+    color: red;
+    font-size: 0.75rem;
+    text-align: left;
+}
+
+.bottomText{
+    margin: 0.2rem 0 1rem;
+}
+
+.notice{
+    position: absolute;
+    width: 30%;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    z-index: 99;
+    background-color: aquamarine;
+    border: solid 2px rgba(0, 128, 0, 0.837);
+    border-radius: 0.5rem;
+    padding: 0.8rem;
+    transition: all 1s;
+}
+
+.hide{
+    opacity: 0;
+}
+

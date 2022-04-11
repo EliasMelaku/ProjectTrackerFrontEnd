@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import SingleProject from "../Components/SingleProject";
+import { LoginContext } from "../LoginContext";
+
 const Home = () => {
+
   let navigate = useNavigate();
+  const location = useLocation();
+  const [LoginStatus, setLoginStatus] = useContext(LoginContext);
 
   const [projects, setProjects] = useState([]);
 
@@ -12,8 +18,8 @@ const Home = () => {
   }, []);
 
   const checkIfLoggedIn = () => {
-    if (!localStorage.getItem('username') ) {
-      navigate("/login", { replace: true });
+    if (!LoginStatus) {
+      navigate("/login", { replace: true , state:{ message: "Login"} });
     } else {
       getProjects();
     }
@@ -21,7 +27,7 @@ const Home = () => {
 
   const getProjects = () => {
     axios
-      .get(`https://localhost:7227/api/Auth/3`)
+      .get(`https://localhost:7227/api/Auth/${location.state.id}`)
       .then((res) => {
         console.log(res.data);
         setProjects(res.data.projects);
@@ -34,9 +40,7 @@ const Home = () => {
 
   return (
     <div>
-      {projects.map(project => (
-        <h1 key={project.id}>{project.department}</h1>
-      ))}
+      <SingleProject projects={projects}/>
     </div>
   );
 };
