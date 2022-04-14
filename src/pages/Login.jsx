@@ -50,7 +50,7 @@ const Login = () => {
         <input name="password" type="password" placeholder="Password" />
         <input type="submit" value="Login" />
         <Link to={"/register"} className="link" >
-          <p>Have no account? Register Now</p>
+          <p className="bottomText">Have no account? Register Now</p>
         </Link>
       </form>
     </div>

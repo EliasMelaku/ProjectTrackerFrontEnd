@@ -30,3 +30,57 @@ li{
 .link:hover{
     text-decoration: none;
 }
+
+.myNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Josefin Sans';
+    padding: 0.25rem 0.25rem 0.25rem 2rem;
+}
+.myNav *{
+    text-decoration: none;
+}
+
+.navlinkHolder{
+    /* background-color: red; */
+    width: 20rem;
+    font-size: large;
+    margin-top: .5rem;
+    font-weight: 500;
+}
+.navbar-brand{
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+.navLinks .link, .navbar-brand{
+    color: rgb(96,61,163);
+    position: relative;
+    padding-bottom: 0.25rem;
+}
+
+.navLinks .link::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2.5px;
+    background-color: rgb(96,61,163);
+    transition: width 0.3s;
+
+}
+
+.navLinks .link:hover::before{
+    width: 100%;
+}
+
+.navReg{
+    background-image: linear-gradient(to bottom right ,rgb(96,61,163), rgb(186, 158, 236) ) ;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 0.25rem;
+}
+.navReg li{
+    color: white;
+}
