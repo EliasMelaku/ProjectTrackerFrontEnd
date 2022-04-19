@@ -111,7 +111,7 @@ const Register = () => {
         />
         <p className="error">{errors.cPassword?.message}</p>
         <input type="submit" value="Register" />
-        <Link to={"/login"}>
+        <Link to={"/login"} className="link" >
           <p className="bottomText">Already have an account? Login</p>
         </Link>
       </form>

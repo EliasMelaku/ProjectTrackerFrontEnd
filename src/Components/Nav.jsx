@@ -16,7 +16,7 @@ const Nav = () => {
     navigate("/login", { replace: true });
   };
 
-  if (!userLoggedIn) {
+  if (userLoggedIn) {
     loginStatus = (
       <ul className="loginStatus">
         <Link to="/login" className="link">
@@ -29,14 +29,15 @@ const Nav = () => {
     );
   } else {
     loginStatus = (
-      <div className="loginStatus">
+      <ul className="loginStatus">
         <Link to="/editProfile" className="link">
-          <li>{localStorage.getItem("username")}</li>
+          {/* <li>localStorage.getItem("username")</li> */}
+          <li>username</li>
         </Link>
-        <button onClick={Logout}>
-          <h5>Logout</h5>
+        <button onClick={Logout} className="link">
+          <li>Logout</li>
         </button>
-      </div>
+      </ul>
     );
   }
 
@@ -58,8 +59,8 @@ const Nav = () => {
           </Link>
         </li>
         <li className="navLinks">
-          <Link to={"/details"} className="link">
-            Details
+          <Link to={"/newProject"} className="link">
+            New Project
           </Link>
         </li>
       </ul>

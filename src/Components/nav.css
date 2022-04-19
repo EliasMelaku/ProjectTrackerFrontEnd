@@ -32,11 +32,17 @@ li{
 }
 
 .myNav{
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Josefin Sans';
-    padding: 0.25rem 0.25rem 0.25rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.5rem 0.25rem 0.5rem 2rem;
+    z-index: 99;
+    background: white;
+    width: 100%;
 }
 .myNav *{
     text-decoration: none;
@@ -44,10 +50,10 @@ li{
 
 .navlinkHolder{
     /* background-color: red; */
-    width: 20rem;
+    width: 25rem;
     font-size: large;
     margin-top: .5rem;
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 .navbar-brand{
     font-size: 1.75rem;
@@ -57,6 +63,11 @@ li{
     color: rgb(96,61,163);
     position: relative;
     padding-bottom: 0.25rem;
+    font-weight: bold;
+}
+
+.navLinks .link{
+    font-size: 1.3rem;
 }
 
 .navLinks .link::before{
@@ -77,7 +88,7 @@ li{
 
 .navReg{
     background-image: linear-gradient(to bottom right ,rgb(96,61,163), rgb(186, 158, 236) ) ;
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
     color: white;
     border-radius: 0.25rem;
 }

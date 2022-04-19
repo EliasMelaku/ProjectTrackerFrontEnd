@@ -5,8 +5,9 @@ import axios from "axios";
 import SingleProject from "../Components/SingleProject";
 import { LoginContext } from "../LoginContext";
 
-const Home = () => {
+import "./css/home.css";
 
+const Home = () => {
   let navigate = useNavigate();
   const location = useLocation();
   const [LoginStatus, setLoginStatus] = useContext(LoginContext);
@@ -14,12 +15,12 @@ const Home = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    checkIfLoggedIn();
+    // checkIfLoggedIn();
   }, []);
 
   const checkIfLoggedIn = () => {
     if (!LoginStatus) {
-      navigate("/login", { replace: true , state:{ message: "Login"} });
+      navigate("/login", { replace: true, state: { message: "Login" } });
     } else {
       getProjects();
     }
@@ -39,8 +40,19 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <SingleProject projects={projects}/>
+    <div className="projectsContainer">
+      <h1>My Projects</h1>
+      <div className="cardContainer myProjects">
+        <SingleProject projects={projects} />
+        <SingleProject projects={projects} />
+        <SingleProject projects={projects} />
+        <SingleProject projects={projects} />
+        <SingleProject projects={projects} />
+      </div>
+      <h1>Other Projects</h1>
+      <div className="cardContainer otherProjects">
+        <SingleProject projects={projects} />
+      </div>
     </div>
   );
 };

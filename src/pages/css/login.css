@@ -10,16 +10,18 @@
 
 .title{
     margin: 1rem 0 0 0;
-    font-family: 'Montserrat';
-    color: black;
+    font-family: 'Lato';
+    color: rgb(122, 184, 255);
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .formContainer{
     position: absolute;
     width: 100%;
-    height: 90vh;
-    background-color: rgb(244, 243, 243);
-    padding-top: -5rem;
+    height: 100vh;
+    background-color:rgb(226, 247, 255);
+    padding-top: 3rem;
     text-align: center;
 }
 
@@ -91,7 +93,7 @@ button{
     top: -3rem;
     width: 30%;
     padding: 0 3.5rem 1rem;
-    height: 80vh;
+    height: 85vh;
 }
 .namesContainer{
     display: flex;
@@ -115,6 +117,9 @@ button{
 
 .bottomText{
     margin: 0.2rem 0 1rem;
+}
+.bottomText:hover{
+    text-decoration: none;
 }
 
 .notice{

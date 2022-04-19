@@ -1,0 +1,24 @@
+.projectsContainer{
+    background-color: rgb(226, 247, 255);
+    height: max-content;
+    padding: 7rem 2rem;
+    position: relative;
+    text-align: start;
+}
+
+.projectsContainer h1{
+    font-family: 'Poppins';
+    margin: 1.5rem 1rem 0.5rem;
+}
+
+.cardContainer{
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    row-gap: 1.5rem;
+    column-gap: 1.5rem;
+    max-width: 95%;
+    /* border: solid 1px black; */
+}
+

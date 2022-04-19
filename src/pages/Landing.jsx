@@ -12,8 +12,8 @@ const Landing = () => {
       {/* <button className="getStarted">Get Started</button> */}
       {/* <div className="arrow"></div> */}
       <div className="cards"></div>
-      <button class="btn-wrap">
-        <span class="btn">Get Started</span>
+      <button className="btn-wrap">
+        <span className="btn">Get Started</span>
       </button>
     </div>
   );

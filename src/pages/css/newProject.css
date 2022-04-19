@@ -1,0 +1,18 @@
+.newProjectContainer{
+    background-color: beige;
+    height: 100vh;
+    padding: 4.5rem 2rem 0;
+}
+.newProjForm{
+    margin: auto;
+    padding: 2rem 1rem;
+    width: 80%;
+    /* background-color: white; */
+    height: 100%;
+}
+
+.newProjTitle{
+    text-align: start;
+    font-family: 'Montserrat';
+    margin-left: 4rem;
+}
