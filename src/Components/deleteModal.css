@@ -1,0 +1,51 @@
+.delModalContainer{
+    width: 100%;
+    min-height: 89vh;
+    background-color: rgba(25, 25, 25, 0.249);
+    position: fixed;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.myDeleteModal{
+    width: 40%;
+    background-color: rgb(231, 231, 231);
+    color: black;
+    margin: auto;
+    padding: 1.5rem;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.25rem;
+    
+}
+.myModalTitle{
+    margin-left: 1rem;
+}
+.closeModal{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.myDeleteModal button:not(:first-of-type){
+    padding: 0.5rem 0.75rem;
+    border-radius: .25rem;
+    color: white;
+    margin: 2rem 0 0 5rem ;
+    width: 10rem;
+
+}
+
+.confirmDelete{
+    background-color: #C0392B;
+}
+.cancel{
+    background-color: #38BA7D;
+}

@@ -1,18 +1,187 @@
 .newProjectContainer{
-    background-color: beige;
-    height: 100vh;
+    background-color: rgb(226, 247, 255);
+    min-height: 100vh;
     padding: 4.5rem 2rem 0;
 }
-.newProjForm{
+.newProjectForm{
     margin: auto;
-    padding: 2rem 1rem;
-    width: 80%;
-    /* background-color: white; */
+    padding: 2rem 1rem 2rem 5rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column ;
+    row-gap: 1rem;
+    background-color: white;
     height: 100%;
+    text-align: left;
+    position: relative;
 }
 
 .newProjTitle{
     text-align: start;
     font-family: 'Montserrat';
-    margin-left: 4rem;
+    /* margin-left: 4rem; */
+}
+
+.newProjectForm input{
+    width: 50%;
+    padding: 0.5rem;
+    margin-top: -0.5rem;
+    border-radius: 0.2rem;
+}
+
+.oneRow{
+    padding: 0;
+    width: 60%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+}
+.oneRow input{
+    width: 70%;
+}
+
+.priorityPicker{
+    width: fit-content;
+    /* max-width: 50%; */
+    height: 3rem;
+    /* border: solid 1px grey; */
+    box-shadow: 0 0 5px 0.2px rgba(128, 128, 128, 0.463);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    display: inline-flex;
+}
+
+.newProjectForm input[type=radio]{
+    display: none;
+}
+.priorityTitle{
+    position: relative;
+    left: 0;
+    margin: 0.5rem 0 0;
+    display: inline;
+    color: rgb(87, 87, 87);
+    font-size: 0.85rem;
+}
+.radioLabel{
+    position: relative;
+    padding: 0.5rem 1rem;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.radioLabel:nth-of-type(2){
+    border-right: solid 1px grey;
+    border-left: solid 1px grey;
+    transition: all 0.25s;
+}
+
+.lowchoice:checked + .lowlabel{
+    background-color: rgb(75,181,67);
+    color: white;
+}
+.midchoice:checked + .midlabel{
+    background-color: rgb(	229, 153, 25);
+    color: white;
+}
+.highchoice:checked + .highlabel{
+    background-color: #c90a00;
+    color: white;
+}
+
+.deptSelect{
+    width: 50%;
+    border: solid 1px lightgrey;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    outline: none;
+    appearance: none;
+}
+.deptSelect option{
+    padding: 0.25rem;
+    appearance: none;
+}
+.deptSelect option:focus{
+   cursor: pointer;
+}
+
+
+.multiOptionChoice{
+    display: flex;
+    flex-direction: row;
+    padding: 0.25rem 0.5rem;
+}
+.multiOptionChoice img{
+    width: 2.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.multiOptionChoice p{
+    margin: 0.5rem 0 0 0.5rem;
+
+}
+.msl-chip{
+    font-size: 0.75rem;
+}
+.msl-input{
+    min-width: 100%;
+}
+
+.newProjectForm input[type="submit"]{
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 10rem;
+
+    background-image: linear-gradient(to bottom right, rgb(0, 212, 0), green);
+}
+
+.newProjectForm .createBtn:hover{
+    background-image: linear-gradient(to bottom right, green, green);
+}
+
+.deliverables{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 1rem;
+    column-gap: 1rem;
+    min-height: 10rem;
+    margin-bottom: 10rem;
+    padding: 2rem 2rem 2rem 0;
+    /* background-color: beige; */
+}
+
+.del{
+    width: 100%;
+    min-height: 5rem;
+    height: fit-content;
+    /* border: solid 1px black; */
+    padding: 1rem 1rem 1rem 0;
+}
+.del input{
+    width: 80%;
+    margin: 0.25rem 0;
+    padding: 0.5rem;
+}
+
+.addInput{
+    display: inline-block;
+    background-color: #38BA7D;
+    width: 5rem;
+    padding: 0.25rem 1rem;
+    margin-top: 0.5rem;
+}
+
+.removeInput{
+    margin-left: 1rem;
+    background-color: #C0392B;
+    width: 5rem;
+    padding: 0.25rem 1rem;
+    margin-top: 0.5rem;
+}
+
+.removeInput:first-of-type{
+    display: none;
 }

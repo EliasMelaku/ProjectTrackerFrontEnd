@@ -12,6 +12,9 @@ ul{
     /* background: rgb(97, 95, 95); */
     height: 6vh;
 }
+button{
+    background: none;
+}
 
 .loginStatus{
     margin-right: 5rem;
@@ -43,6 +46,7 @@ li{
     z-index: 99;
     background: white;
     width: 100%;
+    box-shadow: 0 0 10px 2px rgba(128, 128, 128, 0.453);
 }
 .myNav *{
     text-decoration: none;
@@ -68,6 +72,21 @@ li{
 
 .navLinks .link{
     font-size: 1.3rem;
+}
+.userIcon{
+    /* min-width: 7.5rem; */
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.25rem;
+    
+}
+.userIcon li{
+    margin-left: 0.25rem;
+}
+.userIcon img{
+    width: 2rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
 }
 
 .navLinks .link::before{

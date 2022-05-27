@@ -1,0 +1,167 @@
+.projectDetailContainer {
+  background-color: rgb(226, 247, 255);
+  min-height: 100vh;
+  padding: 4.5rem 2rem 0;
+}
+.projectDetailContainer h4{
+  font-family: 'Montserrat';
+}
+
+.projectDescription{
+  font-family: 'Lato';
+  font-size: 1.2rem;
+  color: grey;
+}
+.projectDetails {
+  margin: auto;
+  padding: 2rem ;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  background-color: white;
+  height: 100%;
+  text-align: left;
+  position: relative;
+}
+.mySwiper {
+  /* border: solid 1px black; */
+  width: 100%;
+  min-height: 15rem;
+  background-color: rgb(240, 240, 240);
+  border-radius: 0.25rem;
+  position: relative;
+}
+
+.swiper-slide {
+  text-align: center;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-pagination {
+  display: none;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  height: 1rem;
+}
+
+.newTask {
+  background-color: white;
+  border-radius: 0.25rem;
+  border: solid 1px grey;
+  padding: 2rem;
+  cursor: pointer;
+  height: 12.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskCard {
+  text-align: start;
+  background-color: white;
+  height: 12.5rem;
+  width: 95%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  overflow-x: scroll;
+  position: relative;
+}
+.taskCard p{
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  text-align: justify;
+  hyphens: auto;
+}
+.taskCard i{
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.fa-pen-to-square {
+  left: 1rem;
+  color: #1E90FF;
+}
+.fa-trash-can {
+  left: 3rem;
+  color: #DC143C;
+}
+.fa-circle-check {
+  right: 1.5rem;
+  color: #32CD32;
+}
+
+
+.whenEmpty{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Poppins';
+  color: rgb(116, 116, 116);
+}
+
+.projectMembers{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  row-gap: 3rem;
+  column-gap: 2rem;
+  background-color: beige;
+  padding: 1rem 2rem;
+}
+.projMember{
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.myProgress{
+  width: 90%;
+}
+
+.delvs{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-right: 5rem;
+  margin-top: 1rem;
+}
+.delv{
+  width: 8rem;
+  height: 10rem;
+  position: relative;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-image: url("../images/wood.png");
+  clip-path: polygon(0 0, 43% 0, 43% 5%, 61% 5%, 61% 0, 100% 0, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
+}
+
+.paper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  width: 90%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0px 0px 5px 0px #888;
+  margin-top: 0.15rem;
+  padding: 0.25rem;
+}
+
+.lines {
+  height: 100%;
+  background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+}

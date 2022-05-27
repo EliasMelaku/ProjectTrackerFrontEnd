@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LoginProvider } from "./LoginContext";
 import Landing from "./pages/Landing";
+import ProjectDetail from "./pages/ProjectDetail";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
           <Route path="/home"        element={<Home />} />
           <Route path="/newproject"     element={<NewProject />} />
           <Route path="/editProfile" element={<EditProfile />} />
-          <Route path="/project/:id"    element={<New />} />
+          <Route path="/project/:id"    element={<ProjectDetail />} />
           <Route path="/item/:id"    element={<Details />} />
           <Route path="/login"       element={<Login />} />
           <Route path="register"     element={<Register />} />

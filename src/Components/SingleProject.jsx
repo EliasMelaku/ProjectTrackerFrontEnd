@@ -1,6 +1,7 @@
 import React from "react";
 import "./Project.css";
 import { Link } from "react-router-dom";
+import { ProgressBar } from "react-bootstrap";
 
 const SingleProject = ({ projects }) => {
   return (
@@ -13,7 +14,7 @@ const SingleProject = ({ projects }) => {
           <h1>{project.projectManagerId}</h1>
         </div>
       ))} */}
-      <div className={"urgency " + "moderate"}></div>
+      <div className={"urgency " + "urgent"}></div>
       <div className="titleAndDept">
         <h2 className="projectTitle">New Title</h2>
         <p className="projectDept">Marketing</p>
@@ -32,7 +33,8 @@ const SingleProject = ({ projects }) => {
         {" "}
         <b className="percentage">60%</b>Completed
       </p>
-      <div className="cardProgress"></div>
+      <ProgressBar now={90} className="cardProgress" />
+      {/* <div className="cardProgress"></div> */}
     </div>
   );
 };

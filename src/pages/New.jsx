@@ -31,7 +31,7 @@ const New = () => {
     }
   }
 
-  return <div>{itemId}</div>;
+  return <h1>itemId</h1>;
 };
 
 export default New;

@@ -96,7 +96,7 @@
     height: 7px;
     border: solid 0.5px grey;
     border-radius: 1rem;
-    background: linear-gradient(to right, rgb(58, 0, 139) 60%, white 60%);
+    /* background: linear-gradient(to right, rgb(58, 0, 139) 60%, white 60%); */
 }
 
 .progressLabel{
