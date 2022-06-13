@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Deliverable = (props, {deliverable, onAdd, onRemove, onFieldChange}) => {
+const Deliverable = ({number, deliverable, onAdd, onRemove, onFieldChange}) => {
 
   return (
     <div className="del del25">
@@ -9,7 +9,7 @@ const Deliverable = (props, {deliverable, onAdd, onRemove, onFieldChange}) => {
                 type="text"
                 key={index}
                 placeholder="Deliverable"
-                onBlur={() => onFieldChange(index)}
+                onBlur={(event) => onFieldChange(index, event, number)}
 
               ></input>
             ))}

@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MultiSelect from "react-multiple-select-dropdown-lite";
 import "react-multiple-select-dropdown-lite/dist/index.css";
 import Deliverable from "../Components/Deliverable";
+import axios from "axios";
 
 import "./css/newProject.css";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import * as yup from "yup";
+import { projectSchema } from "../Validations/ProjectValidation";
+
 const NewProject = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(projectSchema),
+  });
+
   const [value, setvalue] = useState("");
+  const [radio, setRadio] = useState("elective");
+  const [dept, setDept] = useState("IT");
 
   const [deliveralbes25, setDeliverable25] = useState([{ deliverable: "" }]);
   const [deliveralbes50, setDeliverable50] = useState([{ deliverable: "" }]);
@@ -17,48 +34,24 @@ const NewProject = () => {
     setvalue(val);
   };
 
-  const options = [
-    {
-      label: (
-        <div className="multiOptionChoice">
-          <img src={require("./images/male3.jpg")} /> <p>Username 1</p>
-        </div>
-      ),
-      value: "user 1",
-    },
-    {
-      label: (
-        <div className="multiOptionChoice">
-          <img src={require("./images/male1.jpg")} /> <p>Username 2</p>
-        </div>
-      ),
-      value: "user 2",
-    },
-    {
-      label: (
-        <div className="multiOptionChoice">
-          <img src={require("./images/fem1.jpg")} /> <p>Username 3</p>
-        </div>
-      ),
-      value: "user 3",
-    },
-    {
-      label: (
-        <div className="multiOptionChoice">
-          <img src={require("./images/fem2.jpg")} /> <p>Username 4</p>
-        </div>
-      ),
-      value: "user 4",
-    },
-    {
-      label: (
-        <div className="multiOptionChoice">
-          <img src={require("./images/fem2.jpg")} /> <p>Username 5</p>
-        </div>
-      ),
-      value: "user 5",
-    },
+  const users = [
+    { username: "name1", profile: "male3" },
+    { username: "name2", profile: "male1" },
+    { username: "name3", profile: "male2" },
+    { username: "name4", profile: "fem3" },
+    { username: "name5", profile: "fem2" },
+    { username: "name6", profile: "male1" },
   ];
+
+  const options = users.map((user, index) => ({
+    label: (
+      <div className="multiOptionChoice" key={index}>
+        <img src={require("./images/" + user.profile + ".jpg")} />{" "}
+        <p>{user.username}</p>
+      </div>
+    ),
+    value: user.username,
+  }));
 
   // Change Value of each input field for deliverables
   const changeVal = (index, event, number) => {
@@ -145,24 +138,94 @@ const NewProject = () => {
     }
   };
 
+  const tryCreateNewProject = (event) => {
+    // event.preventDefault();
+
+    const del25 = deliveralbes25.map((del) => {
+      return del["deliverable"];
+    });
+    const del50 = deliveralbes50.map((del) => {
+      return del["deliverable"];
+    });
+    const del75 = deliveralbes75.map((del) => {
+      return del["deliverable"];
+    });
+    const del100 = deliveralbes100.map((del) => {
+      return del["deliverable"];
+    });
+
+    const newProject = {
+      projectManagerId: 1 < 0 ? localStorage.getItem("id") : 1,
+      department: dept,
+      title: `${event.projectTitle}`,
+      description: `${event.projectDescription}`,
+      createdDate: new Date(Date.now()).toJSON(),
+      dueDate: `${event.dueDate.toJSON()}`,
+      urgency: radio,
+      completion: 0,
+      deliverables: [
+        del25.join("^"),
+        del50.join("^"),
+        del75.join("^"),
+        del100.join("^"),
+      ],
+
+      report: "default",
+    };
+
+    // console.log(newProject);
+
+    axios
+    .post(`https://localhost:7227/api/Project`, newProject)
+    .then((res) => {
+      console.log(res.data)
+      // if (res.data === "Username" || res.data === "Email"){
+      //   setNoticeStyle("notice-alert")
+      //   setNoticeText(res.data +  " is already taken. Try again with a different " + res.data)
+      //   setAlertState(true)
+      //   setTimeout(() => {setAlertState(false)}, 4000);
+      // }
+      // else{
+      //   setNoticeStyle("")
+      //   setNoticeText("You have succesfullly registered. You can now login to your account from the login page")
+      //   setAlertState(true)
+      //   setTimeout(() => {setAlertState(false)}, 4000);
+      //   console.log(userCredentials);
+      // }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="newProjectContainer">
-      <form action="" className="newProjectForm">
+      <form
+        action=""
+        className="newProjectForm"
+        onSubmit={handleSubmit(tryCreateNewProject)}
+      >
         <h3 className="newProjTitle">Create a new project</h3>
-        {/* <label htmlFor="projectTitle">Project Title</label> */}
+
         <p className="priorityTitle">Project Title</p>
         <input
           type="text"
           name="projectTitle"
           className="projectTitle"
           placeholder="A unique title for the project"
+          {...register("projectTitle")}
         />
+        <p className="error">{errors.projectTitle?.message}</p>
+
         <p className="priorityTitle">Project Description</p>
         <input
           type="text"
+          name="projectDescription"
           className="projectDesc"
           placeholder="Short description about the project"
+          {...register("projectDescription")}
         />
+        <p className="error">{errors.projectDescription?.message}</p>
 
         {/* Date picker for Due Date, and Radio buttons for picking priority */}
         <div className="oneRow">
@@ -175,7 +238,8 @@ const NewProject = () => {
               type="radio"
               name="priorityLevel"
               id="radio-low"
-              value={"1"}
+              value={"elective"}
+              onChange={(event) => setRadio("elective")}
             />
             <label htmlFor="radio-low" className="radioLabel lowlabel">
               Low
@@ -185,7 +249,8 @@ const NewProject = () => {
               type="radio"
               name="priorityLevel"
               id="radio-med"
-              value={"2"}
+              value={"moderate"}
+              onChange={(event) => setRadio("moderate")}
             />
             <label htmlFor="radio-med" className="radioLabel midlabel">
               Medium
@@ -195,30 +260,40 @@ const NewProject = () => {
               type="radio"
               name="priorityLevel"
               id="radio-high"
-              value={"3"}
+              value={"urgent"}
+              onChange={(event) => setRadio("urgent")}
             />
             <label htmlFor="radio-high" className="radioLabel highlabel">
-              High
+              Urgent
             </label>
           </div>
-          <input type="date" name="dueDate" className="dueDatePicker" />
+          <input
+            type="date"
+            name="dueDate"
+            className="dueDatePicker"
+            {...register("dueDate")}
+          />
+          <div></div>
+          <p className="error">{errors.dueDate?.message}</p>
         </div>
 
         {/* Dropdown to select the department */}
         <p className="priorityTitle">Select Department</p>
-        <select className="deptSelect">
-          <option value="fruit">Fruit</option>
-          <option value="vegetable">Vegetable</option>
-          <option value="meat">Meat</option>
+        <select
+          className="deptSelect"
+          onChange={(event) => setDept(event.target.value)}
+        >
+          <option value="IT">IT</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Ticketing">Ticketing</option>
+          <option value="Call Center">Call Center</option>
         </select>
-
 
         {/* Multiselect input for picking users */}
         <p className="priorityTitle">Select Users</p>
         <MultiSelect onChange={handleOnchange} options={options} />
 
-
-      {/* Add Dynamiclly increasing input fields for deliverables at different stages of the project */}
+        {/* Add Dynamiclly increasing input fields for deliverables at different stages of the project */}
         <div className="deliverables">
           <p className="priorityTitle">Enter Deliverable(s) at 25%</p>
           <p className="priorityTitle">Enter Deliverable(s) at 50%</p>

@@ -98,6 +98,9 @@
   left: 3rem;
   color: #DC143C;
 }
+.trash-alone{
+  left: 1rem;
+}
 .fa-circle-check {
   right: 1.5rem;
   color: #32CD32;
@@ -129,6 +132,10 @@
 
 .myProgress{
   width: 90%;
+  transition: all 0.5s;
+}
+.progress-bar{
+  border-radius: 0 50px 50px 0;
 }
 
 .delvs{
@@ -164,4 +171,32 @@
 .lines {
   height: 100%;
   background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+  position: relative;
+}
+
+.paper ul{
+  position: absolute;
+  top: 0rem;
+  display: flex;
+  height: 7.5rem;
+  padding-top: 2rem;
+  flex-direction: column;
+  width: 95%;
+  overflow: scroll;
+  /* border: solid 1px black; */
+  align-items: start;
+  text-align: justify;
+  hyphens: auto;
+ 
+}
+
+.paper ul li{
+  text-align: justify;
+  font-size: 0.75rem;
+  /* border: solid 1px black; */
+}
+
+.paper ul li::before{
+    content: '✓';
+    margin-right: 0.25rem;
 }

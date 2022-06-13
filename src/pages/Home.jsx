@@ -12,25 +12,61 @@ const Home = () => {
   const location = useLocation();
   const [LoginStatus, setLoginStatus] = useContext(LoginContext);
 
-  const [projects, setProjects] = useState([]);
+  
+
+  const [projects, setProjects] = useState([
+    // {
+    //   urgency: "urgent",
+    //   title: "Title", 
+    //   dept: "Marketing",
+    //   description: "A bit lengthy description about the project we're doing now, it may not be the best but still",
+    //   completion: 60
+
+    // },
+    // {
+    //   urgency: "moderate",
+    //   title: "Some title here", 
+    //   dept: "IT",
+    //   description: "Another state of the art description that doesn't actually mean anthing and is only here to fill some sace",
+    //   completion: 20
+
+    // },
+    // {
+    //   urgency: "elective",
+    //   title: "Interesting Title", 
+    //   dept: "IT",
+    //   description: "Like the spelling is not even that epic, like a lot of the shit dones is not even relevant to anything ",
+    //   completion: 90
+
+    // }
+  ]);
 
   useEffect(() => {
-    // checkIfLoggedIn();
+    checkIfLoggedIn();
   }, []);
 
   const checkIfLoggedIn = () => {
     if (!LoginStatus) {
-      navigate("/login", { replace: true, state: { message: "Login" } });
+      // 
+      if (localStorage.getItem("id") !== null){
+        setLoginStatus(true)
+        getProjects();
+      }
+      else{
+        navigate("/login", { replace: true, state: { message: "Login" } });
+      }
     } else {
+      // console.log(LoginStatus)
+      setLoginStatus(true)
       getProjects();
     }
   };
 
   const getProjects = () => {
     axios
-      .get(`https://localhost:7227/api/Auth/${location.state.id}`)
+      .get(`https://localhost:7227/api/Auth/${localStorage.getItem("id")}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setProjects(res.data.projects);
       })
       .catch((err) => {
@@ -39,20 +75,22 @@ const Home = () => {
       });
   };
 
+  let renderProjects;
+
+  if (projects.length > 0) {
+    renderProjects = <SingleProject projects={projects} />;
+  } else {
+    renderProjects = <div className="noProjects"> You have no projects yet.</div>;
+  }
+
   return (
     <div className="projectsContainer">
       <h1>My Projects</h1>
-      <div className="cardContainer myProjects">
-        <SingleProject projects={projects} />
-        <SingleProject projects={projects} />
-        <SingleProject projects={projects} />
-        <SingleProject projects={projects} />
-        <SingleProject projects={projects} />
-      </div>
-      <h1>Other Projects</h1>
+      <div className="cardContainer myProjects">{renderProjects}</div>
+      {/* <h1>Other Projects</h1>
       <div className="cardContainer otherProjects">
         <SingleProject projects={projects} />
-      </div>
+      </div> */}
     </div>
   );
 };

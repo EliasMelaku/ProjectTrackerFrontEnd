@@ -1,7 +1,8 @@
 import React from "react";
 import "./taskModal.css";
+import axios from "axios";
 
-const TaskModal = ( {display, type,title, description, onClose} ) => {
+const TaskModal = ( {display, type,title, description, onClose, id, taskId} ) => {
     if (display == false){
         return null
     }
@@ -11,11 +12,33 @@ const TaskModal = ( {display, type,title, description, onClose} ) => {
 
     const submitModal = (event) => {
       event.preventDefault();
+      var task = {
+        title: event.target.taskTitle.value,
+        description: event.target.taskDescription.value,
+        isCompleted: false,
+        projectId: id
+      }
       if (type == true){
-        console.log("Create New Task")
+        axios.post(`https://localhost:7227/api/ProjectTask`, task)
+        .then((res) => {
+          console.log(res)
+          onClose()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
       }
       else {
-        console.log("Task Edited")
+        task.id = taskId
+        // console.log(task);
+        axios.put(`https://localhost:7227/api/ProjectTask`, task)
+        .then((res) => {
+          console.log(res)
+          onClose()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
       }
     }
 
@@ -30,7 +53,7 @@ const TaskModal = ( {display, type,title, description, onClose} ) => {
           <p className="priorityTitle">Task Title</p>
           <input
             type="text"
-            name="projectTitle"
+            name="taskTitle"
             className="projectTitle"
             placeholder="A unique title for the task"
             defaultValue={title}
@@ -38,6 +61,7 @@ const TaskModal = ( {display, type,title, description, onClose} ) => {
           <p className="priorityTitle">Task Description</p>
           <input
             type="text"
+            name="taskDescription"
             className="projectDesc"
             placeholder="Short description about the task"
             defaultValue={description}

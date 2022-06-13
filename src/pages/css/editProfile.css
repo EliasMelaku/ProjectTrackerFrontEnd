@@ -20,10 +20,10 @@
 .editForm input{
     margin: 1rem 1rem 2rem 0;
     width: 45%;
-    display: block;
+    display: inline-block;
 }
 .editForm:nth-of-type(2) input{
-    display: inline-block;
+    display: block;
 }
 
 .editForm input[type="submit"]{
@@ -71,3 +71,6 @@
     cursor: pointer;
 }
 
+.notice{
+    text-align: center;
+}

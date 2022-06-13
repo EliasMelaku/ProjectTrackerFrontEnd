@@ -12,6 +12,9 @@
 div::-webkit-scrollbar{
   display: none;
 }
+ul::-webkit-scrollbar{
+  display: none;
+}
 
 .App {
     text-align: center;

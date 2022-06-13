@@ -136,10 +136,18 @@ input[type=submit]:hover {
     transition: all 1s;
 }
 
+.notice-alert{
+    background-color: rgb(255, 107, 136);
+    border:solid 2px rgb(131, 10, 10);
+}
+
 .hide{
     z-index: -1;
     opacity: 0;
 }
 
+.loginError{
+    margin-top: -2rem;
+}
 
 

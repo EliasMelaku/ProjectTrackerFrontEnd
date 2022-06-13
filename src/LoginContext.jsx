@@ -7,7 +7,6 @@ export const LoginProvider = (props) => {
 
     useEffect(() => {
     }, [LoginStatus])
-    
 
     return(
         <LoginContext.Provider value={[LoginStatus, setLoginStatus]}>

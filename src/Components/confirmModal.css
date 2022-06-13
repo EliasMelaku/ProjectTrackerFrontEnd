@@ -26,7 +26,7 @@
     
 }
 .myModalTitle{
-    margin-left: 1rem;
+    margin: 1rem 0 0 3rem;
 }
 .closeModal{
     position: absolute;
@@ -45,6 +45,9 @@
 
 .confirmDelete{
     background-color: #C0392B;
+}
+.confirmComplete{
+    background-color: rgb(65, 65, 225);
 }
 .cancel{
     background-color: #38BA7D;

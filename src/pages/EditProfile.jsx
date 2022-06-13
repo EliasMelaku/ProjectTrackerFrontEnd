@@ -1,66 +1,161 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/editProfile.css";
+import axios from "axios";
 
-import profile1 from "./images/fem1.jpg";
-import profile2 from "./images/male1.jpg";
-import profile3 from "./images/fem2.jpg";
-import profile4 from "./images/male2.jpg";
-import profile5 from "./images/fem3.jpg";
-import profile6 from "./images/male3.jpg";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import * as yup from "yup";
+import { userSchema } from "../Validations/UserValidation";
 
 const EditProfile = () => {
-  const [selectedProfile, setProfile] = useState(1 == 0 ? profile1 : profile2);
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
+  const profiles = ["fem1", "male1", "fem2", "male2", "fem3", "male3"];
+  const [selectedProfile, setProfile] = useState("default");
+
+  const [alertState, setAlertState] = useState(Boolean);
+  // const [notcieStyle, setNoticeStyle] = useState("");
+  const [noticeText, setNoticeText] = useState("");
+
+  // const [credentials, setCredentials] = useState({});
+
+  const [newUsername, setNewUsername] = useState("")
+  const [newEmail, setNewEmail] = useState("")
+  const [newFirstname, setNewFirstname] = useState("")
+  const [newLastname, setNewLastname] = useState("")
+
+  // Function to display chosen profile
   const changeProfile = (event) => {
     event.preventDefault();
-    setProfile(event.target.src);
-    console.log(event.target.alt);
+    if (event.target.alt) {
+      setProfile(event.target.alt);
+    }
+  };
+
+  const getCurrentUser = () => {
+    axios
+      .get(
+        `https://localhost:7227/api/Auth/string/${localStorage.getItem(
+          "username"
+        )}`
+      )
+      .then((res) => {
+        // console.log(res.data);
+        setNewUsername(res.data.username);
+        setNewEmail(res.data.email);
+        setNewFirstname(res.data.firstName);
+        setNewLastname(res.data.lastName);
+        setProfile(res.data.profile);
+        // console.log(selectedProfile)
+      })
+      .catch((err) => {
+        // console.log(localStorage.getItem('token'))
+        console.log(err);
+      });
+  };
+
+  const editUser = (event) => {
+    event.preventDefault();
+    const updatedUser = {
+      id: localStorage.getItem("id"),
+      username: newUsername,
+      email: newEmail,
+      firstname: newFirstname,
+      lastname: newLastname,
+      profile: selectedProfile,
+    };
+    // console.log(updatedUser)
+
+    axios
+      .put(`https://localhost:7227/api/Auth`, updatedUser)
+      .then((res) => {
+        // console.log(res);
+        localStorage.setItem("username", newUsername)
+        localStorage.setItem("profile", selectedProfile)
+        setAlertState(true)
+        setNoticeText("Account Information Updated")
+        setTimeout(() => setAlertState(false), 3000)
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div className="editProfileContainer">
-      {/* <h2 className="editTitle">Edit your profile</h2> */}
+      <p className={alertState ? "notice " : "notice hide" }>{noticeText}</p>
       <div className="editFormContainer">
-        <form className="editForm">
+        <form
+          className="editForm"
+          onSubmit={event => editUser(event)}
+        >
           <h2 className="editTitle">Change your profile icon</h2>
           <div className="iconrow">
-            <img src={selectedProfile} alt="profile" className="profileIcon" />
+            <img
+              src={require("./images/" + selectedProfile + ".jpg")}
+              alt="profile"
+              className="profileIcon"
+            />
             {/* <i className="fa fa-user fa-6x profileIcon"></i> */}
             <div className="iconChoices">
-              <button className="choice" onClick={changeProfile}>
-                <img src={profile1} alt={profile1} />
-              </button>
-              <button className="choice" onClick={changeProfile}>
-                <img src={profile2} alt="profile2" />
-              </button>
-              <button className="choice" onClick={changeProfile}>
-                <img src={profile3} alt="profile3" />
-              </button>
-              <button className="choice" onClick={changeProfile}>
-                <img src={profile4} alt="profile4" />
-              </button>
-              <button className="choice" onClick={changeProfile}>
-                <img src={profile5} alt="profile5" />
-              </button>
-              <button className="choice" onClick={changeProfile}>
-                <img src={profile6} alt="profile6" />
-              </button>
+              {profiles.map((profile, index) => (
+                <button className="choice" onClick={changeProfile} key={index}>
+                  <img
+                    src={require("./images/" + profile + ".jpg")}
+                    alt={profile}
+                  />
+                </button>
+              ))}
             </div>
           </div>
-
-        </form>
-        <hr />
-        <form className="editForm">
+          {/* </form> */}
+          <br />
+          <hr />
+          <br />
+          {/* <form className="editForm"> */}
           <h3 className="editTitle">Personal Information</h3>
-          <input name="username" type="text" placeholder="Username" id="user" />
-          <input name="email" type="email" placeholder="someone@gmail.com" />
-          <input name="firstname" type="text" placeholder="First Name" />
-          <input name="lastname" type="text" placeholder="Last Name" />
+          <input
+            name="username"
+            type="text"
+            placeholder="Username"
+            id="user"
+            defaultValue={newUsername}
+            onChange={(event) => {setNewUsername(event.target.value)}}
+          />
+
+          <input
+            name="email"
+            type="email"
+            placeholder="someone@gmail.com"
+            defaultValue={newEmail}
+            onChange={(event) => {setNewEmail(event.target.value)}}
+          />
+
+          <input
+            name="firstname"
+            type="text"
+            placeholder="First Name"
+            defaultValue={newFirstname}
+            onChange={(event) => {setNewFirstname(event.target.value)}}
+          />
+
+          <input
+            name="lastname"
+            type="text"
+            placeholder="Last Name"
+            defaultValue={newLastname}
+            onChange={(event) => {setNewLastname(event.target.value)}}
+          />
+
           <input type="submit" value="Save Changes" />
         </form>
         <hr />
-        <form className="editForm">
+        {/* <form className="editForm">
           <h3 className="editTitle">Change your password</h3>
           <input
             name="curPassword"
@@ -78,7 +173,7 @@ const EditProfile = () => {
             placeholder="Confirm New Password"
           />
           <input type="submit" value="Change Password" />
-        </form>
+        </form> */}
       </div>
     </div>
   );

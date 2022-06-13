@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LoginProvider } from "./LoginContext";
 import Landing from "./pages/Landing";
 import ProjectDetail from "./pages/ProjectDetail";
+import EditProject from "./Components/EditProject";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         </LoginProvider>
       </div>
     </Router>
+    // <EditProject />
   );
 }
 
