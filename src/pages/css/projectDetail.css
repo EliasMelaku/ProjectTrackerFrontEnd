@@ -1,16 +1,41 @@
 .projectDetailContainer {
   background-color: rgb(226, 247, 255);
   min-height: 100vh;
-  padding: 4.5rem 2rem 0;
+  padding: 4.5rem 2rem 1rem;
 }
 .projectDetailContainer h4{
   font-family: 'Montserrat';
+  font-size: 1.25rem;
+}
+
+.information{
+  position: relative;
+  min-height: 5rem;
+  /* background-color: rgb(160, 226, 248); */
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-left: -1rem;
+}
+
+.toEditProject{
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+}
+
+.toEditProject .fa-pen-to-square{
+  color: #1e44ff;
+}
+
+.projectTitle{
+  font-family: 'Lato';
 }
 
 .projectDescription{
   font-family: 'Lato';
   font-size: 1.2rem;
   color: grey;
+  margin-top: 1rem;
 }
 .projectDetails {
   margin: auto;
@@ -117,6 +142,9 @@
 }
 
 .projectMembers{
+  position: relative;
+  min-height: 5rem;
+  height: fit-content;
   display: grid;
   grid-template-columns: 30% 30% 30%;
   row-gap: 3rem;
@@ -146,13 +174,20 @@
   margin-top: 1rem;
 }
 .delv{
-  width: 8rem;
-  height: 10rem;
+  width: 6rem;
+  height: 8rem;
   position: relative;
   margin-top: 0.5rem;
   padding: 0.5rem;
   background-image: url("../images/wood.png");
   clip-path: polygon(0 0, 43% 0, 43% 5%, 61% 5%, 61% 0, 100% 0, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
+}
+
+.noDelv{
+  font-family: 'Poppins';
+  font-size: 0.75rem;
+  text-align: center;
+  margin-left: -0.5rem;
 }
 
 .paper {
@@ -199,4 +234,92 @@
 .paper ul li::before{
     content: '✓';
     margin-right: 0.25rem;
+}
+
+.noUsers{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  height: 7.5rem;
+  width: 50%;
+}
+
+.bear{
+  width: 15rem;
+  height: 7.5rem;
+}
+
+.noUsers p{
+  position: relative;
+  top: 2.5rem;
+  font-family: 'Poppins';
+  font-size: 2rem;
+  color: grey;
+}
+
+.twoForms{
+  width: 70%;
+  margin: 1rem auto;
+  background-color: white;
+  display: flex;
+  border-radius: 0.5rem ;
+}
+
+.deleteProject, .editProject{
+  width: 47.5%;
+}
+
+.editProject{
+  padding: 2.5rem;
+  background-color: #32CD32;
+  border: solid 1px green;
+}
+
+.editProject h4{
+  width: 55%;
+  text-align: justify;
+
+}
+#uploadReport{
+  display: none;
+}
+.uploadReportBtn{
+  /* display: none; */
+  color: black;
+  top: 1.5rem;
+  cursor: pointer;
+}
+.uploadReportBtn:hover{
+  color: black;
+  background-color: white;
+  box-shadow: 2px 2px 8px 1.5px green;
+}
+
+.editProjBtn{
+  top: 4.5rem;
+}
+.editProjBtn:hover{
+  background-color: rgb(1, 82, 1);
+  box-shadow: 0 0 8px 1.5px green;
+
+}
+.editProjBtn:disabled{
+  color: grey;
+}
+
+.editProjBtn:disabled:hover{
+  color: grey;
+  box-shadow: none;
+  background-color: white;
+}
+
+.projectReport{
+  margin: 1rem auto;
+  width: 70%;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 0.25rem;
+  min-height: 10rem;
 }

@@ -14,8 +14,8 @@ import { loginSchema } from "../Validations/UserValidation";
 const Login = () => {
   useEffect(() => {
     localStorage.clear();
-    setLoginStatus(false)
-  }, [])
+    setLoginStatus(false);
+  }, []);
 
   const [alertState, setAlertState] = useState(Boolean);
   const [alertMessage, setAlertMessage] = useState("");
@@ -36,28 +36,28 @@ const Login = () => {
   });
 
   // Function to try and login if credentials are correct and if validation is successful
-  
-  const tryLogin = (event) => {
 
+  const tryLogin = (event) => {
     const userCredentials = {
       username: `${event.username}`,
-      password: `${event.password}`
+      password: `${event.password}`,
     };
 
     axios
       .post(`https://localhost:7227/api/Auth/login`, userCredentials)
       .then((res) => {
-        
         if (res.data === "Password Verification Failed") {
-          setAlertMessage("Incorrect Username/Password Combination")
-          setAlertState(true)
-          setTimeout(() => {setAlertState(false)}, 3000);
+          setAlertMessage("Incorrect Username/Password Combination");
+          setAlertState(true);
+          setTimeout(() => {
+            setAlertState(false);
+          }, 3000);
         } else {
           // console.log(res.data);
-          localStorage.setItem("id", res.data.id)
+          localStorage.setItem("id", res.data.id);
           localStorage.setItem("username", res.data.username);
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("profile", res.data.profile)
+          localStorage.setItem("profile", res.data.profile);
           setLoginStatus(true);
           // console.log(LoginStatus);
           navigate("/home", { replace: true });
@@ -65,17 +65,23 @@ const Login = () => {
       })
       .catch((err) => {
         // console.log(err);
-        if (err.response.status === 404){
-          setAlertMessage("An account with the given username was not found")
-          setAlertState(true)
-          setTimeout(() => {setAlertState(false)}, 3000);
+        var message = err.message;
+        if  (err.response != undefined) {
+          message = "Account not found" 
         }
+        setAlertMessage(message);
+        setAlertState(true);
+        setTimeout(() => {
+          setAlertState(false);
+        }, 3000);
       });
-  }
+  };
 
   return (
     <div className="formContainer">
-      <p className={alertState ? "notice notice-alert" : "notice hide"}>{alertMessage}</p>
+      <p className={alertState ? "notice notice-alert" : "notice hide"}>
+        {alertMessage}
+      </p>
       <form className="loginForm" onSubmit={handleSubmit(tryLogin)}>
         <h2 className="title">Welcome Back</h2>
         <input

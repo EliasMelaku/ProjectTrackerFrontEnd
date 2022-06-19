@@ -14,3 +14,9 @@ export const loginSchema = yup.object().shape({
     username: yup.string().required("Username is required"),
     password: yup.string().required("Password is required").min(4, "Password should be at least 4 characters.").max(16, "Password should be at most 16 characters.")
 })
+
+export const passwordSchema = yup.object().shape({
+    password: yup.string().required("Password is required").min(4, "Password should be at least 4 characters.").max(16, "Password should be at most 16 characters."),
+    newPassword: yup.string().required("New Password is required").min(4, "Password should be at least 4 characters.").max(16, "Password should be at most 16 characters."), 
+    cNewPassword: yup.string().oneOf([yup.ref('newPassword'), null], "Passwords Don't Match").required("You should confirm your new password.")
+})

@@ -1,5 +1,5 @@
 import React from "react";
-import "./taskModal.css";
+import "./css/taskModal.css";
 import axios from "axios";
 
 const TaskModal = ( {display, type,title, description, onClose, id, taskId} ) => {

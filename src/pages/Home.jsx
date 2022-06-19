@@ -78,9 +78,9 @@ const Home = () => {
   let renderProjects;
 
   if (projects.length > 0) {
-    renderProjects = <SingleProject projects={projects} />;
+    renderProjects = <SingleProject projects={projects} isCompleted={false}/>;
   } else {
-    renderProjects = <div className="noProjects"> You have no projects yet.</div>;
+    renderProjects = <div className="noProjects"> You have no active projects.</div>;
   }
 
   return (

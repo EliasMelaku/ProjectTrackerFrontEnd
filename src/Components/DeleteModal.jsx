@@ -1,42 +1,38 @@
-import React from "react";
 import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
 
-import "./css/confirmModal.css";
 
-const ConfirmModal = ({ type, display, onClose, id }) => {
+const DeleteModal = ({ display, onClose, onDeleted, type, id }) => {
   if (display == false) {
     return null;
   }
 
   var modalTitle =
     type == true
-      ? "Are you sure you want to delete this task?"
-      : "Mark this task as completed?";
-  var icon = type == true ? "fa-trash" : "fa-check";
-  var btnText = type == true ? "Delete" : "Complete";
-  // var action = (type == true) ? onDelete : onComplete;
+      ? "Are you sure you want to delete this project?"
+      : "Are you sure you want to delete your account and all associated projects and tasks?";
 
   const handleClick = () => {
-    if (type == true) {
+    if (type == false) {
       axios
-        .delete(`https://localhost:7227/api/ProjectTask/${id}`)
+        .delete(`https://localhost:7227/api/Auth/${localStorage.getItem("id")}`)
         .then((res) => {
           // console.log(id);
           // console.log(res);
-          onClose()
+          onDeleted();
         })
         .catch((err) => console.log(err));
     } else {
       axios
-        .put(`https://localhost:7227/api/ProjectTask/${id}`)
+        .delete(`https://localhost:7227/api/Project/${id}`)
         .then((res) => {
           // console.log(id);
-          onClose()
+          onDeleted();
         })
         .catch((err) => console.log(err));
     }
   };
-
   return (
     <div className="delModalContainer">
       <div className="myDeleteModal">
@@ -44,8 +40,8 @@ const ConfirmModal = ({ type, display, onClose, id }) => {
           <i className="fa-solid fa-x closeModal"></i>
         </button>
         <h4 className="myModalTitle">{modalTitle}</h4>
-        <button className={"confirm" + btnText} onClick={handleClick}>
-          <i className={"fa-solid " + icon}></i> {btnText}{" "}
+        <button className={"confirmDelete"} onClick={handleClick}>
+          <i className={"fa-solid fa-trash"}></i> Delete
         </button>
         <button className="cancel" onClick={onClose}>
           Cancel
@@ -55,4 +51,4 @@ const ConfirmModal = ({ type, display, onClose, id }) => {
   );
 };
 
-export default ConfirmModal;
+export default DeleteModal;

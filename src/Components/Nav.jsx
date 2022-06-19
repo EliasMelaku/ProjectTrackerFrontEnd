@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../LoginContext";
-import "./nav.css";
+import "./css/nav.css";
 
 const Nav = () => {
   let loginStatus;
@@ -64,11 +64,16 @@ const Nav = () => {
             Home
           </Link>
         </li>
-        {/* <li className="navLinks">
-          <Link to={"/projects"} className="link">
-            Projects
+        <li className="navLinks">
+          <Link to={"/completedProjects"} className="link">
+            Finished Projects
           </Link>
-        </li> */}
+        </li>
+        <li className="navLinks">
+          <Link to={"/otherProjects"} className="link">
+            Other Projects
+          </Link>
+        </li>
         <li className="navLinks">
           <Link to={"/newProject"} className="link">
             New Project
